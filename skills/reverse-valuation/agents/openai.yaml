@@ -1,0 +1,13 @@
+interface:
+  display_name: Reverse Valuation
+  short_description: Giải kỳ vọng trong giá, kiểm chứng edge và phản biện thesis
+  default_prompt: Dùng $reverse-valuation chạy FULL cho mã tôi chỉ định.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

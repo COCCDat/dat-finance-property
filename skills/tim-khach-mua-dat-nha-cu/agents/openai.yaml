@@ -1,0 +1,15 @@
+interface:
+  display_name: Tìm khách mua đất & kết nối chủ xây
+  short_description: Tìm khách mua và môi giới nhà mới có chia hoa hồng
+  default_prompt: Dùng $tim-khach-mua-dat-nha-cu đọc dự án, tìm khách mua và môi giới
+    bán nhà xây mới mời hợp tác để kết nối nhà đầu tư, kèm số công khai và đề xuất
+    gọi/nhắn.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

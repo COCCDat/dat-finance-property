@@ -1,0 +1,13 @@
+interface:
+  display_name: Định giá BĐS so sánh
+  short_description: Tìm tài sản so sánh, điều chỉnh giá và dự phóng doanh thu
+  default_prompt: Dùng $dinh-gia-bds-so-sanh định giá các lô trong bảng đính kèm.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

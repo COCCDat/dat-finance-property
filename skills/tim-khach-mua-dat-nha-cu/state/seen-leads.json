@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "scope": "tim-khach-mua-dat-nha-cu",
+  "coverage_note": "Mẫu trạng thái trống để phân phối mã nguồn. Không chứa lịch sử các lượt trước; cần nạp lịch sử được phép truy cập trước khi khẳng định khả năng chống trùng.",
+  "entries": [],
+  "last_run": null
+}
