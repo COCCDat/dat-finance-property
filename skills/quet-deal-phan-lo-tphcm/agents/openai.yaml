@@ -1,0 +1,13 @@
+interface:
+  display_name: Quét deal phân lô TP.HCM
+  short_description: Quét quỹ đất theo bộ lọc, kiểm tra chéo và chống trùng tin
+  default_prompt: Dùng $quet-deal-phan-lo-tphcm quét tối đa 5 deal mới hôm nay.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
