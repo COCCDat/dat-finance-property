@@ -1,6 +1,6 @@
 ---
 name: quet-deal-phan-lo-tphcm
-description: Quét và sàng lọc quỹ đất/nhà cũ/kho xưởng cho chiến lược nghiên cứu phân lô TP.HCM theo bộ tiêu chí người dùng. Dùng khi quét deal phân lô, tìm đất lớn, kiếm thêm hoặc chạy lại sourcing. Bắt buộc đất ≥150 m²; ngoài Gò Vấp cần ngang ≥10 m hoặc ≥2 mặt đường/hẻm tiếp cận được. Có ngoại lệ Gò Vấp, chống trùng, kiểm tra chéo và xử lý CAPTCHA bằng web search/open.
+description: Quét và sàng lọc quỹ đất/nhà cũ/kho xưởng cho chiến lược nghiên cứu phân lô TP.HCM theo bộ tiêu chí người dùng. Dùng khi quét deal phân lô, tìm đất lớn, kiếm thêm hoặc chạy lại sourcing. Bắt buộc đất ≥150 m²; ngoài Gò Vấp và Quận 12 cần hệ số rộng/dài ≥ 2/3 hoặc ≥2 mặt đường/hẻm tiếp cận được. Có ngoại lệ Gò Vấp và Quận 12; ưu tiên Tân Bình, Gò Vấp, Bình Thạnh, Tân Phú, Phú Nhuận trước các tài sản vùng ven; chống trùng, kiểm tra chéo và xử lý CAPTCHA bằng web search/open.
 ---
 
 # Quét deal phân lô TP.HCM
@@ -10,19 +10,19 @@ Trả tiếng Việt ngắn, dễ quét. Chạy sourcing độc lập, không t�
 ## Điều kiện cứng
 
 Diện tích **đất** ≥150 m² ở mọi nơi; không dùng diện tích sàn.
-Gò Vấp được xác định: chỉ diện tích là ngưỡng tối thiểu.
-Ngoài Gò Vấp, kể cả vùng mở rộng: diện tích ≥150 AND (ngang ≥10 OR ≥2 mặt đường/hẻm tiếp cận được).
-Hai mặt thoáng giáp nhà/kênh/đất hàng xóm không tự coi là hai mặt tiếp giáp. Không suy ngoại lệ Gò Vấp từ phường mới chưa ánh xạ địa bàn cũ.
+Gò Vấp và Quận 12 được xác định: chỉ diện tích là ngưỡng tối thiểu (ngoại lệ không yêu cầu tỷ lệ rộng/dài hay số mặt tiếp giáp).
+Ngoài Gò Vấp và Quận 12, kể cả vùng mở rộng: diện tích ≥150 m² AND (hệ số rộng/dài ≥ 2/3 OR ≥2 mặt đường/hẻm tiếp cận được).
+Hai mặt thoáng giáp nhà/kênh/đất hàng xóm không tự coi là hai mặt tiếp giáp. Không suy ngoại lệ Gò Vấp / Quận 12 từ phường mới chưa ánh xạ địa bàn cũ.
 
-Thiếu dữ liệu điều kiện cứng → nhóm C cần xác minh. Rõ không đạt → loại, không chứa trong nhóm C. Chạy `python3 scripts/eligibility.py < candidate.json` nếu cần kiểm tra logic: `area_m2`, `width_m`, `access_sides`, `go_vap`, `adverse_planning`; chưa biết là null. Script không xác minh nguồn.
+Thiếu dữ liệu điều kiện cứng (chưa rõ kích thước rộng/dài hoặc chưa rõ mặt tiếp giáp ở ngoài Gò Vấp & Q12) → nhóm C cần xác minh. Rõ không đạt → loại, không chứa trong nhóm C. Chạy `python3 scripts/eligibility.py < candidate.json` nếu cần kiểm tra logic: `area_m2`, `width_m`, `length_m`, `width_to_length_ratio`, `access_sides`, `go_vap`, `quan_12`, `adverse_planning`; chưa biết là null. Script không xác minh nguồn.
 
 Loại nhóm chính khi bài công khai có quy hoạch bất lợi: cây xanh/giao thông/hỗn hợp/hành lang bảo vệ/khó xây dựng hoặc loại đất rõ không phù hợp. Gần sông/kênh chỉ là risk flag, không tự kết luận dính hành lang. Thiếu số m² đất ở không tự loại, nhưng ghi thiếu và hạ ưu tiên. “Công nhận đủ” không đồng nghĩa full thổ cư.
 
 ## Phạm vi và ưu tiên
 
-Mặc định Tân Phú → Bình Tân → Gò Vấp → Quận 12 → Phú Nhuận theo tên địa bàn cũ để tìm tin. Dùng phạm vi/budget người dùng nếu có. Khi mở rộng tại TP.HCM, ghi riêng; không thay vùng chỉ định âm thầm. Không tự đặt trần vốn.
+Mặc định ưu tiên tìm tin các khu vực: **Tân Bình → Gò Vấp → Bình Thạnh → Tân Phú → Phú Nhuận** trước, sau đó mới đến các tài sản vùng ven (Bình Tân, Quận 12, Hóc Môn, Bình Chánh...). Dùng phạm vi/budget người dùng nếu có. Khi mở rộng tại TP.HCM, ghi riêng; không thay vùng chỉ định âm thầm. Không tự đặt trần vốn.
 
-Ưu tiên đất ở tỷ lệ cao, lô góc, ngang rộng, thửa đẹp, ô tô/hẻm thông, đất trống/nhà cũ/cấp 4/dãy trọ/kho xưởng dễ xử lý. Hạ premium công trình mới/biệt thự/building. Xếp hình thể: ngang≥10 + hai mặt → hai mặt → ngang≥10 → ngoại lệ Gò Vấp; kết hợp độ mới, đầy đủ, đất ở, công trình và giá/m². Không chấm số trừ khi được yêu cầu; không gọi giá thấp là deal có lời trước khi định giá đầu ra. Chỉ đọc quy hoạch bài công bố ở sourcing, không tra địa chính chuyên sâu từng candidate.
+Ưu tiên đất ở tỷ lệ cao, lô góc, thửa đẹp (rộng/dài cân đối), ô tô/hẻm thông, đất trống/nhà cũ/cấp 4/dãy trọ/kho xưởng dễ xử lý. Hạ premium công trình mới/biệt thự/building. Xếp hình thể: (rộng/dài ≥ 2/3 + hai mặt) → hai mặt → rộng/dài ≥ 2/3 → ngoại lệ Gò Vấp & Quận 12; kết hợp độ mới, đầy đủ, đất ở, công trình và giá/m². Không chấm số trừ khi được yêu cầu; không gọi giá thấp là deal có lời trước khi định giá đầu ra. Chỉ đọc quy hoạch bài công bố ở sourcing, không tra địa chính chuyên sâu từng candidate.
 
 ## Tìm và xác minh
 
