@@ -19,6 +19,7 @@ def evaluate(d):
     gv = d.get('go_vap')
     q12 = d.get('quan_12')
     adverse = d.get('adverse_planning')
+    excessive_setback = d.get('excessive_setback')
 
     district = d.get('district')
     if district and isinstance(district, str):
@@ -34,6 +35,8 @@ def evaluate(d):
         raise ValueError('quan_12 must be bool or null')
     if adverse is not None and type(adverse) is not bool:
         raise ValueError('adverse_planning must be bool or null')
+    if excessive_setback is not None and type(excessive_setback) is not bool:
+        raise ValueError('excessive_setback must be bool or null')
     if sides is not None and sides != int(sides):
         raise ValueError('access_sides must be integer')
 
@@ -41,6 +44,8 @@ def evaluate(d):
 
     if adverse is True:
         status, reason = 'REJECT', 'public adverse planning claim'
+    elif excessive_setback is True:
+        status, reason = 'REJECT', 'major road setback exceeds 25%'
     elif area is not None and area < 150:
         status, reason = 'REJECT', 'land area below 150'
     elif area is None:
