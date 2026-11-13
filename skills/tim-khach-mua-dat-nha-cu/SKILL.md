@@ -1,6 +1,6 @@
 ---
 name: tim-khach-mua-dat-nha-cu
-description: Tìm khách mua đất, nhà cũ, nhà nát để xây bán, sửa bán hoặc xây sửa để ở trên web, Facebook, TikTok và nguồn công khai. Ghép nhu cầu với dự án/từng tài sản, lấy số điện thoại công khai có nguồn, chống trùng và phân loại nên gọi/nhắn tin. Nhận người mua trực tiếp, nhà đầu tư, môi giới có khách và đơn vị thu mua; tìm thêm môi giới bán nhà mới xây/xây lại có mời chạy phụ, hợp tác hoặc chia hoa hồng để kết nối nhà đầu tư xây bán. Dùng khi tìm khách mua, người thu mua hoặc môi giới kết nối tệp đầu tư; tin bán chỉ dùng làm bằng chứng cho nhóm kết nối này, không phải sourcing tài sản.
+description: Tìm khách mua đất, nhà cũ, nhà nát để xây bán, sửa bán hoặc xây sửa để ở trên web, Facebook, TikTok và nguồn công khai. Ghép nhu cầu với dự án/từng tài sản, lấy số điện thoại công khai có nguồn, chống trùng và phân loại nên gọi/nhắn tin. Nhận người mua trực tiếp, nhà đầu tư, môi giới có khách và đơn vị thu mua; tìm thêm môi giới bán nhà mới xây/xây lại có mời chạy phụ, hợp tác hoặc chia hoa hồng để kết nối nhà đầu tư xây bán (ưu tiên bài có hoa hồng cụ thể từ 2-3% trở lên và nhận diện linh hoạt các biến thể từ lóng tương đương). Dùng khi tìm khách mua, người thu mua hoặc môi giới kết nối tệp đầu tư; tin bán chỉ dùng làm bằng chứng cho nhóm kết nối này, không phải sourcing tài sản.
 ---
 
 # Tìm khách mua đất, nhà cũ & môi giới kết nối chủ xây
@@ -10,7 +10,7 @@ description: Tìm khách mua đất, nhà cũ, nhà nát để xây bán, sửa 
 - Trả lời tiếng Việt, bảng trong chat. Chỉ xuất file khi người dùng yêu cầu.
 - Mặc định **chỉ trả đầu mối mới**: đọc sổ và lịch sử các lượt trước, tự bỏ người/bài đã trả, kể cả mức 3. Bắt buộc áp [references/history-dedup.md](references/history-dedup.md), đọc [state/seen-leads.json](state/seen-leads.json) trước truy vấn và cập nhật sổ sau mỗi lượt. Việc lưu sổ nội bộ được phép, không phải xuất file cho người dùng.
 - Khi người dùng nói chạy flow, chạy lại, full flow hoặc demo chung, mặc định rà **đủ 5 nhóm**: nhà đầu tư mua đất/nhà cũ; người mua để xây/sửa ở; môi giới có nhu cầu mua cho khách; doanh nghiệp/đơn vị thu mua; môi giới bán nhà xây mới mời hợp tác. Chỉ chạy riêng một nhánh khi người dùng giới hạn rõ. Nhóm mới bổ sung không thay thế các nhóm trước đó.
-- Nhận người mua trực tiếp, nhà đầu tư xây/sửa bán, môi giới có khách, doanh nghiệp và đơn vị có nhu cầu. Thêm nhóm **môi giới bán nhà xây mới có mời hợp tác/chia hoa hồng** để hỏi kết nối nhà đầu tư; không tự coi họ có nhu cầu mua.
+- Nhận người mua trực tiếp, nhà đầu tư xây/sửa bán, môi giới có khách, doanh nghiệp và đơn vị có nhu cầu. Thêm nhóm **môi giới bán nhà xây mới có mời hợp tác/chia hoa hồng** để hỏi kết nối nhà đầu tư; không tự coi họ có nhu cầu mua. Nhận diện linh hoạt các biến thể từ khóa và cách diễn đạt tương đương (HH, gửi ACE 2-3%, phí MG, chia 50/50, chạy phụ, nhận đủ phí...). Nâng mức độ ưu tiên lên hàng đầu cho các bài đăng chào hoa hồng cụ thể từ 2–3% trở lên (hoặc thưởng lớn, nhận đủ phí) vì chủ xây đang khát thanh khoản để xoay vốn mua đất mới.
 - Nhà đầu tư: không giới hạn tuổi bài; ghi rõ bài cũ chưa được xác nhận còn mua.
 - Người mua để ở: bằng chứng nhu cầu trong **60 ngày gần nhất**, tính theo ngày địa phương Asia/Ho_Chi_Minh tại lượt chạy. Chấp nhận đúng 60 ngày, loại trên 60 ngày khỏi danh sách chính.
 - Môi giới/đơn vị: áp thời gian theo mục đích nhu cầu họ đại diện. Mua ở áp 60 ngày; thu mua đầu tư lâu dài không giới hạn. Chưa rõ mục đích không tự coi là đầu tư; nếu bài trong 60 ngày và nhu cầu mua có nguồn rõ vẫn có thể mức 2 để hỏi mục đích. Nếu bài quá 60 ngày hoặc không rõ ngày thì mức 3.
@@ -37,7 +37,7 @@ Giữ giá thấp nhất có thể trao đổi, ghi chú riêng, hồ sơ và th
 Đọc [references/search-playbook.md](references/search-playbook.md) khi lập truy vấn. Khi tìm môi giới bán nhà xây mới/chia hoa hồng, đọc thêm [references/broker-network.md](references/broker-network.md) để lọc, ghép và xếp mức cho nhóm này.
 
 1. Tạo truy vấn riêng cho đầu tư, mua ở, môi giới có khách, đơn vị thu mua và môi giới bán nhà xây mới mời hợp tác. Rà bốn nhóm có nhu cầu mua trước rồi mới tổng hợp nhóm kết nối. Không kết thúc full flow chỉ vì nhánh môi giới có đủ kết quả. Kết hợp địa danh hiện tại/tên cũ, loại tài sản, khoảng giá hoặc diện tích khi hữu ích.
-2. Tìm web rộng rồi `site:facebook.com`, `site:tiktok.com`, nguồn BĐS/diễn đàn/trang doanh nghiệp phù hợp. Thử từ đồng nghĩa, có dấu/không dấu nếu cần. Bài bán nhà hoặc quảng cáo xây dựng đơn thuần không phải nhu cầu mua. Chỉ giữ tin bán nhà xây mới có lời mời hợp tác/chia hoa hồng ở nhóm kết nối riêng; cần hai dấu hiệu trên cùng tài sản.
+2. Tìm web rộng rồi `site:facebook.com`, `site:tiktok.com`, nguồn BĐS/diễn đàn/trang doanh nghiệp phù hợp. Thử từ đồng nghĩa, từ lóng, viết tắt (HH, gửi ACE, chia 50/50, hoa hồng 2-3%...), có dấu/không dấu theo nguyên tắc mở rộng từ khóa tương đương. Bài bán nhà hoặc quảng cáo xây dựng đơn thuần không phải nhu cầu mua. Chỉ giữ tin bán nhà xây mới có lời mời hợp tác/chia hoa hồng ở nhóm kết nối riêng; cần hai dấu hiệu trên cùng tài sản.
 3. Ưu tiên search/open. Khi cần thao tác giao diện, đọc browser skill và dùng khả năng sẵn có, tôn trọng môi trường người dùng chọn. Không giả định truy cập được nhóm kín hoặc đã đăng nhập.
 4. Mở bài gốc/bình luận công khai liên quan để kiểm tra. Với TikTok, chỉ dựa caption, hồ sơ hoặc nội dung video thật sự xem/đọc được; không bịa transcript. Cố lấy permalink bài/bình luận Facebook.
 5. Gặp CAPTCHA/chặn đăng nhập: chuyển nguồn công khai hoặc search/open khác, ghi giới hạn. Không vượt rào hoặc nói đã xác minh thứ chưa đọc được.
@@ -72,7 +72,7 @@ Ghi mỗi ứng viên: tên hiển thị/đơn vị, vai trò, nhóm nhu cầu m
 
 ## 5. Trả kết quả trong chat
 
-Mở đầu bằng phạm vi, ngày chạy/mốc 60 ngày cho mua ở và ưu tiên 90 ngày cho nhóm kết nối, số đầu mối từng nhóm và giới hạn nguồn đáng kể. Tách bảng **Khách có nhu cầu mua** và **Môi giới kết nối nhà đầu tư xây bán** khi có kết quả; bảng nhóm kết nối dùng mẫu broker-network.md. Đặt mức 1 trước mức 2; tách phần `Cần xác minh thêm` cho mức 3. Chỉ tóm tắt lý do loại mức 4.
+Mở đầu bằng phạm vi, ngày chạy/mốc 60 ngày cho mua ở và ưu tiên 90 ngày cho nhóm kết nối, số đầu mối từng nhóm và giới hạn nguồn đáng kể. Tách bảng **Khách có nhu cầu mua** và **Môi giới kết nối nhà đầu tư xây bán** khi có kết quả; bảng nhóm kết nối dùng mẫu broker-network.md, trong đó ưu tiên xếp các bài có hoa hồng cụ thể $\ge 2\text{--}3\%$ lên đầu. Đặt mức 1 trước mức 2; tách phần `Cần xác minh thêm` cho mức 3. Chỉ tóm tắt lý do loại mức 4.
 
 | # | Thông tin cơ bản | Nhu cầu & tài sản phù hợp | Link bài gốc / nguồn | Ngày & xác minh | Số điện thoại công khai | Đề xuất tiếp cận |
 |---|---|---|---|---|---|---|
